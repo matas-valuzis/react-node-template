@@ -1,8 +1,8 @@
 ## Installation
-1) clone into folder
-2) cd to src dir
-3) run npm install
-4) run gulp watch
+1) clone into folder \n
+2) cd to src dir \n
+3) run npm install \n
+4) run gulp watch \n
 
 ## To use
 
