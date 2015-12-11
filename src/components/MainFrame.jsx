@@ -4,7 +4,7 @@ var MainFrame = React.createClass({
 	render: function() {
         return (
 			<div>
-			Hello worldssfdsf
+			Hello worldssfdsfd
 			</div>
 		);
     }
