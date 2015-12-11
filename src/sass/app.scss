@@ -1,0 +1,8 @@
+﻿$font-stack:    Helvetica, sans-serif;
+$size: 400%;
+$primary-color: #000;
+
+body {
+  font: $size $font-stack;
+  color: $primary-color;
+}

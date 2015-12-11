@@ -4,9 +4,16 @@ var babelify = require('babelify');
 var fs = require('fs');
 var uglify = require('gulp-uglify');
 var buffer = require('vinyl-buffer');
-var rename = require('gulp-rename');
 var source = require('vinyl-source-stream');
 var nodemon = require('gulp-nodemon');
+var sass = require('gulp-sass');
+var watch = require('gulp-watch');
+
+gulp.task('sass', function(){
+	return gulp.src('./sass/**/*.scss')
+	.pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('../css'));
+});
 
 gulp.task('hot-edit', function(){
 	console.log("Starting hot edit server...");
@@ -42,5 +49,12 @@ gulp.task('browserify-prod', function() {
 });
 
 gulp.task('watch', function(){
-	gulp.watch('./components/*.jsx', ['browserify']);
+	
+	watch('./components/*.jsx', function(){
+		gulp.start('browserify');
+	});
+	
+	watch('./sass/*.scss', function(){
+		gulp.start('sass');
+	});
 });

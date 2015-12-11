@@ -1,3 +1,4 @@
 scripts/*
+css/*
 src/node_modules
 !.gitkeep
