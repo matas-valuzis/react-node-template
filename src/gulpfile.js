@@ -6,6 +6,14 @@ var uglify = require('gulp-uglify');
 var buffer = require('vinyl-buffer');
 var rename = require('gulp-rename');
 var source = require('vinyl-source-stream');
+var nodemon = require('gulp-nodemon');
+
+gulp.task('hot-edit', function(){
+	console.log("Starting hot edit server...");
+	nodemon({
+		script: 'hot-edit-server/server.js'
+	});	
+});
 
 gulp.task('browserify', function() {
 	return browserify('./app.jsx')		
