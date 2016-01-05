@@ -2,12 +2,15 @@ var gulp = require('gulp');
 var browserify = require('browserify');
 var babelify = require('babelify');
 var fs = require('fs');
+var webpack = require('webpack');
+var webpackConfig = require("./webpack.config.js");
 var uglify = require('gulp-uglify');
 var buffer = require('vinyl-buffer');
 var source = require('vinyl-source-stream');
 var nodemon = require('gulp-nodemon');
 var sass = require('gulp-sass');
 var watch = require('gulp-watch');
+var gutil = require("gulp-util");
 
 gulp.task('sass', function(){
 	return gulp.src('./sass/**/*.scss')
@@ -20,6 +23,20 @@ gulp.task('hot-edit', function(){
 	nodemon({
 		script: 'hot-edit-server/server.js'
 	});	
+});
+
+gulp.task("webpack:build", function(callback) {
+	// modify some webpack config options
+	var myConfig = Object.create(webpackConfig);	
+
+	// run webpack
+	webpack(myConfig, function(err, stats) {
+		if(err) throw new gutil.PluginError("webpack:build", err);
+		gutil.log("[webpack:build]", stats.toString({
+			colors: true
+		}));
+		callback();
+	});
 });
 
 gulp.task('browserify', function() {
